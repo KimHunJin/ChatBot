@@ -1,7 +1,18 @@
 module.exports = function(app, fs) {
 
   console.log('test');
-  
+
+  app.get('/', function(req, res) {
+	var text = "안녕 이건 카카오 봇이야";
+	var messageObject = new Object();
+	messageObject.text = text;
+	var resultObject = new Object();
+	resultObject.message = messageObject;
+	var resultJson = JSON.stringify(resultObject);
+	res.send(resultJson);
+
+  });
+
   app.get('/keyboard', function(req, res) {
 	fs.readFile(__dirname + "/../data/" + "keyboard.json", 'utf8', function(err, data) {
 	  console.log(data);
